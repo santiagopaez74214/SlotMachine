@@ -133,13 +133,6 @@ Se dividió en los siguientes tres mini-ciclos:
     * Añadir lógica visual para que la máquina modifique su apariencia si se llega a un estado ganador.
     * Configurar alertas visuales con JOptionPane ante acciones fallidas, mostrando el mensaje únicamente cuando el simulador esté en modo visible.
 
-**Estructura del Código:**
-
-El proyecto fue construido extendiendo los componentes del paquete shapes, incluyendo:
-* **SlotMachine:** Controla la lógica global, métodos de estado e interfaz requerida.
-* **Wheel:** Gestiona cada rueda de forma independiente y las rotaciones.
-* **Symbol:** Representa cada icono manejando su propio color y forma base (Triangle).
-* **Componentes nativos de dibujo:** Canvas, Rectangle, Triangle.
 
 **2. ¿Cuál es el estado actual del proyecto en términos de mini-ciclos? ¿por qué?**
 Terminado, porque pudimos cumplir con los requisitos.
