@@ -104,7 +104,7 @@ El desarrollo del proyecto se realizó mediante mini-ciclos con el propósito de
 
 Los mini-ciclos definidos, su estado actual y la justificación de cada uno se encuentran documentados en la retrospectiva del proyecto.
 
-## Retrospectiva
+## Retrospectiva 1
 
 **1. ¿Cuáles fueron los mini-ciclos definidos? Justifíquenlos.**
 
@@ -159,4 +159,55 @@ Pair programming, por el mismo punto de la pregunta 6.
 * Escuela Colombiana de Ingeniería Julio Garavito. **Desarrollo Orientado por Objetos — Proyecto Inicial Ciclo No. 1, 2026-2.**
 * ICPC Foundation. **49th ICPC World Championship — Problem I: Slot Machine.**
 
+
+## Retrospectiva 2
+
+**1. ¿Cuáles fueron los mini-ciclos definidos? Justifíquenlos.**
+
+Se dividió en los siguientes tres mini-ciclos:
+
+* **Mini-ciclo 1:**
+  * **Objetivo:** Implementar la gestión estructural y el control de estado de las ruedas de la máquina.
+  * **Tareas:**
+    * Desarrollar el método swap(int wheel1, int wheel2) para permitir el intercambio de posición entre dos ruedas validando los límites de la lista..
+    * Implementar los métodos lock(int wheel) y unlock(int wheel) para fijar y soltar el estado de operación de una rueda específica.
+    * Actualizar la lógica en la clase Wheel incorporando el atributo de bloqueo para impedir giros cuando la rueda esté fija..
+
+* **Mini-ciclo 2:**
+  * **Objetivo:** Incorporar los mecanismos avanzados de rotación fraccionada y el cumplimiento de usabilidad visual.
+  * **Tareas principales:**
+    * Desarrollar el método spin(int wheel, int steps) soportando rotaciones por una cantidad exacta de pasos en dirección positiva o negativa..
+    * Integrar la lógica de usabilidad para que, si el simulador se encuentra visible en la pantalla, el movimiento por pasos se ejecute y visualice de forma progresiva.
+
+* **Mini-ciclo 3:**
+  * **Objetivo:** Darle vida al simulador conectando las acciones de la máquina con las consultas de estado y las notificaciones al usuario.
+  * **Tareas principales:**
+    * Programar la sobrecarga spin(String[] setSymbols) para actualizar de manera simultánea el estado y los símbolos visibles de todas las ruedas a partir de un arreglo de colores.
+    * Validar la correspondencia exacta entre el tamaño del arreglo de entrada y el número total de ruedas activas antes de aplicar los cambios de estado.
+
+
+**2. ¿Cuál es el estado actual del proyecto en términos de mini-ciclos? ¿por qué?**
+Terminado, porque pudimos cumplir con los requisitos.
+
+**3. ¿Cuál fue el tiempo total invertido por cada uno de ustedes? (Horas/Hombre)**
+* Cañon : 7 horas
+* Paez : 7 horas
+
+**4. ¿Cuál consideran fue el mayor logro? ¿Por qué?**
+Hacer las pruebas, porque era lo vital en este ciclo. 
+
+**5. ¿Cuál consideran que fue el mayor problema técnico? ¿Qué hicieron para resolverlo?**
+Los resultados que arrojaban las pruebas, intentamos.
+
+**6. ¿Qué hicieron bien como equipo? ¿Qué se comprometen a hacer para mejorar los resultados?**
+Poder desarrollar el trabajo a la par, asi cada uno entendia que iba pasando. Nos comprometemos a no procrastinar.
+
+**7. Considerando las prácticas XP incluidas en los laboratorios. ¿cuál fue la más útil? ¿por qué?**
+Pair programming, por el mismo punto de la pregunta 6.
+
+**8. ¿Qué referencias usaron? ¿Cuál fue la más útil? Incluyan citas con estándares adecuados.**
+* Oracle. (2014). *Java Platform, Standard Edition 8 API Specification*. https://docs.oracle.com/javase/8/docs/api/
+* Google. (2026). *Gemini* (Versión del 23 de agosto) [Modelo de lenguaje grande]. https://gemini.google.com/
+* Escuela Colombiana de Ingeniería Julio Garavito. **Desarrollo Orientado por Objetos — Proyecto Inicial Ciclo No. 1, 2026-2.**
+* ICPC Foundation. **49th ICPC World Championship — Problem I: Slot Machine.**
 
