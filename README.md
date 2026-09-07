@@ -168,7 +168,7 @@ Pair programming, por el mismo punto de la pregunta 6.
 
 Para organizar el desarrollo del proyecto se establecieron cuatro mini-ciclos:
 
-* **Mini-ciclo 1: Creación e implementación de métodos clave**
+* **Mini-ciclo 1: Creación e implementación de métodos**
 
 El primer mini-ciclo estuvo orientado a implementar las funcionalidades principales requeridas para el segundo ciclo del proyecto:
 
@@ -183,9 +183,7 @@ Estas funcionalidades fueron implementadas principalmente en la clase SlotMachin
 
 * **Mini-ciclo 2: Pruebas de unidad propias**
 
-El segundo mini-ciclo estuvo destinado a la construcción de SlotMachineC2Test.
-
-Se diseñaron pruebas desde dos perspectivas:
+El segundo mini-ciclo estuvo destinado a la construcción de SlotMachineC2Test.Se diseñaron pruebas desde dos perspectivas:
 
 * **Qué debería hacer:** casos de éxito en los que la operación solicitada debe completarse correctamente.
 * **Qué no debería hacer:** casos en los que la operación debe ser rechazada debido a restricciones, posiciones inválidas, ruedas bloqueadas o configuraciones incorrectas.
@@ -194,9 +192,7 @@ Las pruebas se diseñaron para ejecutarse en modo invisible, evitando depender d
 
 * **Mini-ciclo 3: Pruebas de unidad colaborativas**
 
-El tercer mini-ciclo corresponde a las pruebas compartidas SlotMachineCC2Test.
-
-En este mini-ciclo se diseñaron y compartieron casos de prueba con otros integrantes del proyecto. El objetivo fue obtener una perspectiva externa sobre el comportamiento de las funcionalidades desarrolladas.
+El tercer mini-ciclo corresponde a las pruebas compartidas SlotMachineCC2Test. En este mini-ciclo se diseñaron y compartieron casos de prueba con otros integrantes del proyecto. El objetivo fue obtener una perspectiva externa sobre el comportamiento de las funcionalidades desarrolladas.
 
 Para la creación colectiva se utilizaron casos relacionados con:
 
@@ -212,27 +208,28 @@ Los casos propios aportados al wiki fueron identificados mediante la convención
 El cuarto mini-ciclo está orientado a comprobar el funcionamiento del sistema desde una perspectiva integral y preparar la presentación final. Las pruebas de aceptación se enfocan en secuencias completas de interacción, en lugar de verificar únicamente métodos individuales.
 
 **2. ¿Cuál es el estado actual del proyecto en términos de mini-ciclos? ¿por qué?**
-Terminado, porque pudimos cumplir con los requisitos.
+Terminado, porque pudimos cumplir con los requisitos y lo estipulado en el documento del ciclo 2 de desarrollo.
 
 **3. ¿Cuál fue el tiempo total invertido por cada uno de ustedes? (Horas/Hombre)**
 * Cañon : 7 horas
 * Paez : 7 horas
 
 **4. ¿Cuál consideran fue el mayor logro? ¿Por qué?**
-Hacer las pruebas, porque era lo vital en este ciclo. 
+Hacer las pruebas unitarias y de aceptación, porque se centran en poder determinar si lo desarrollado desde el ciclo 1 y lo del ciclo 2, funciona correctamente. 
 
 **5. ¿Cuál consideran que fue el mayor problema técnico? ¿Qué hicieron para resolverlo?**
-Los resultados que arrojaban las pruebas, intentamos.
+Los resultados que arrojaban las pruebas, debido a que si teníamos errores podían deberse más a errores en la implementación que teníamos anteriormente, por lo que teníamos que devolvernos y corregir esos errores.
 
 **6. ¿Qué hicieron bien como equipo? ¿Qué se comprometen a hacer para mejorar los resultados?**
-Poder desarrollar el trabajo a la par, asi cada uno entendia que iba pasando. Nos comprometemos a no procrastinar.
+Poder desarrollar el trabajo a la par, así cada uno entendía que iba pasando. Nos comprometemos a seguir trabajando conjuntamente y mejorar cada vez con los plazos de las entregas.
 
 **7. Considerando las prácticas XP incluidas en los laboratorios. ¿cuál fue la más útil? ¿por qué?**
-Pair programming, por el mismo punto de la pregunta 6.
+Pair programming, por el mismo punto de la pregunta 6 y mejorar nuestras habilidades de trabajo en equipo.
 
 **8. ¿Qué referencias usaron? ¿Cuál fue la más útil? Incluyan citas con estándares adecuados.**
 * Oracle. (2014). *Java Platform, Standard Edition 8 API Specification*. https://docs.oracle.com/javase/8/docs/api/
 * Google. (2026). *Gemini* (Versión del 23 de agosto) [Modelo de lenguaje grande]. https://gemini.google.com/
 * Escuela Colombiana de Ingeniería Julio Garavito. **Desarrollo Orientado por Objetos — Proyecto Inicial Ciclo No. 1, 2026-2.**
 * ICPC Foundation. **49th ICPC World Championship — Problem I: Slot Machine.**
+* JUnit. (s. f.). Class Assert (JUnit API 4.12). JUnit.org. https://junit.org/junit4/javadoc/4.12/org/junit/Assert.html (Assert (assertArrayEquals))
 
