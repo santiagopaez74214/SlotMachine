@@ -164,27 +164,52 @@ Pair programming, por el mismo punto de la pregunta 6.
 
 **1. ¿Cuáles fueron los mini-ciclos definidos? Justifíquenlos.**
 
-Se dividió en los siguientes tres mini-ciclos:
+ **Mini-ciclos planificados**
 
-* **Mini-ciclo 1:**
-  * **Objetivo:** Implementar la gestión estructural y el control de estado de las ruedas de la máquina.
-  * **Tareas:**
-    * Desarrollar el método swap(int wheel1, int wheel2) para permitir el intercambio de posición entre dos ruedas validando los límites de la lista..
-    * Implementar los métodos lock(int wheel) y unlock(int wheel) para fijar y soltar el estado de operación de una rueda específica.
-    * Actualizar la lógica en la clase Wheel incorporando el atributo de bloqueo para impedir giros cuando la rueda esté fija..
+Para organizar el desarrollo del proyecto se establecieron cuatro mini-ciclos:
 
-* **Mini-ciclo 2:**
-  * **Objetivo:** Incorporar los mecanismos avanzados de rotación fraccionada y el cumplimiento de usabilidad visual.
-  * **Tareas principales:**
-    * Desarrollar el método spin(int wheel, int steps) soportando rotaciones por una cantidad exacta de pasos en dirección positiva o negativa..
-    * Integrar la lógica de usabilidad para que, si el simulador se encuentra visible en la pantalla, el movimiento por pasos se ejecute y visualice de forma progresiva.
+* **Mini-ciclo 1: Creación e implementación de métodos clave**
 
-* **Mini-ciclo 3:**
-  * **Objetivo:** Darle vida al simulador conectando las acciones de la máquina con las consultas de estado y las notificaciones al usuario.
-  * **Tareas principales:**
-    * Programar la sobrecarga spin(String[] setSymbols) para actualizar de manera simultánea el estado y los símbolos visibles de todas las ruedas a partir de un arreglo de colores.
-    * Validar la correspondencia exacta entre el tamaño del arreglo de entrada y el número total de ruedas activas antes de aplicar los cambios de estado.
+El primer mini-ciclo estuvo orientado a implementar las funcionalidades principales requeridas para el segundo ciclo del proyecto:
 
+* Intercambiar dos ruedas.
+* Fijar o bloquear una rueda.
+* Soltar o desbloquear una rueda.
+* Rotar una rueda un número determinado de pasos.
+* Configurar la máquina con una configuración específica.
+* Y todas estas funcionalidades integrarlas con los métodos desarrollados durante el Ciclo 1.
+
+Estas funcionalidades fueron implementadas principalmente en la clase SlotMachine, utilizando las operaciones disponibles en la clase Wheel.
+
+* **Mini-ciclo 2: Pruebas de unidad propias**
+
+El segundo mini-ciclo estuvo destinado a la construcción de SlotMachineC2Test.
+
+Se diseñaron pruebas desde dos perspectivas:
+
+* **Qué debería hacer:** casos de éxito en los que la operación solicitada debe completarse correctamente.
+* **Qué no debería hacer:** casos en los que la operación debe ser rechazada debido a restricciones, posiciones inválidas, ruedas bloqueadas o configuraciones incorrectas.
+
+Las pruebas se diseñaron para ejecutarse en modo invisible, evitando depender de la interfaz gráfica y concentrándose en el comportamiento lógico de la máquina.
+
+* **Mini-ciclo 3: Pruebas de unidad colaborativas**
+
+El tercer mini-ciclo corresponde a las pruebas compartidas SlotMachineCC2Test.
+
+En este mini-ciclo se diseñaron y compartieron casos de prueba con otros integrantes del proyecto. El objetivo fue obtener una perspectiva externa sobre el comportamiento de las funcionalidades desarrolladas.
+
+Para la creación colectiva se utilizaron casos relacionados con:
+
+* Intercambio de ruedas bloqueadas y desbloqueadas.
+* Rotación de ruedas mediante una cantidad determinada de pasos.
+* Detección de un jackpot.
+* Validación de configuraciones.
+
+Los casos propios aportados al wiki fueron identificados mediante la convención de nombres establecida para el proyecto, utilizando las iniciales de los autores.
+
+* **Mini-ciclo 4: Pruebas de aceptación y preparación de la demostración**
+
+El cuarto mini-ciclo está orientado a comprobar el funcionamiento del sistema desde una perspectiva integral y preparar la presentación final. Las pruebas de aceptación se enfocan en secuencias completas de interacción, en lugar de verificar únicamente métodos individuales.
 
 **2. ¿Cuál es el estado actual del proyecto en términos de mini-ciclos? ¿por qué?**
 Terminado, porque pudimos cumplir con los requisitos.
