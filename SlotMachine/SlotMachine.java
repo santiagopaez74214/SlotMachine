@@ -26,12 +26,72 @@ public class SlotMachine {
         this.xPos = 0;
         this.yPos = 0;
         this.isVisible = false;
-        this.lastOperation = true;
         this.wheels = new ArrayList<Wheel>();
         
         this.background = new Rectangle(250, 400, "blue", 30, 35);
         this.base = new Rectangle(30, 300, "black", 80, 285);
         this.lever = new Rectangle(120, 10, "black", 430, 85);
+        this.lastOperation = true;
+    }
+    
+    /**
+     * Constructor for objects of class SlotMachine with n wheels.
+     * Initializes the machine's body, base, and lever with default sizes and colors.
+     */
+    /**
+
+     * Constructor del Ciclo 3 para la maratón ICPC.
+
+     * Crea una máquina con n ruedas y n símbolos distintos.
+
+     */
+
+    public SlotMachine(int n) {
+        xPos = 0;
+        yPos = 0;
+        isVisible = false;
+        lastOperation = true; 
+        wheels = new ArrayList<Wheel>();
+        background = new Rectangle(250, 400, "blue", 30, 35);
+        base = new Rectangle(30, 300, "black", 80, 285);
+        lever = new Rectangle(120, 10, "black", 430, 85);
+
+        String[] colores = {
+            "red", "blue", "yellow", "green", "magenta", "black", "white",
+            "lightgray", "gray", "darkgray", "pink", "orange", "cyan",
+            "brown", "purple", "violet", "indigo", "navy", "skyblue", "lightblue",
+            "royalblue", "turquoise", "teal", "aquamarine", "limegreen", "darkgreen",
+            "forestgreen", "olive", "lightgreen", "seagreen", "gold", "khaki", "beige",
+            "ivory", "tan", "chocolate", "sienna", "maroon", "crimson", "darkred",
+            "salmon", "coral", "tomato", "orangered", "darkorange", "peach", "hotpink",
+            "deeppink", "lavender", "plum"
+        };  
+
+        for (int i = 1; i <= n; i++) {
+            addWheel(i); 
+            
+            for (int j = 0; j < n; j++) {
+                addSymbol(i, colores[j]); 
+            }
+
+        }
+        
+        Random rand = new Random();
+        boolean estadoInvalido = true;
+
+        while (estadoInvalido == true) {
+            
+            for (int i = 1; i <= n; i++) {
+                spin(i, rand.nextInt(n)); 
+            }
+            
+            if (distinctSymbols() > 1) {
+                estadoInvalido = false; 
+            }
+        }
+        
+        makeInvisible();
+        lastOperation = true;
     }
     
     /**
@@ -73,23 +133,32 @@ public class SlotMachine {
      */
     public void addWheel(int pos) {
         int i = pos - 1;
-        
+    
         if (i < 0) {
-            i = 0;    
+            i = 0;
         }
+    
         if (i > wheels.size()) {
-            i = wheels.size();   
+            i = wheels.size();
         }
+    
         Wheel newWheel = new Wheel(i + 1);
-        this.wheels.add(i, newWheel);
-        
-        updateWheelsPositions();
-
-        if (this.isVisible) {
-            makeInvisible(); 
-            makeVisible();   
+    
+        if (wheels.contains(newWheel)) {
+            this.lastOperation = false;
+            JOptionPane.showMessageDialog(null, "Ya existe una rueda en la posición indicada.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        
+    
+        this.wheels.add(i, newWheel);
+    
+        updateWheelsPositions();
+    
+        if (this.isVisible) {
+            makeInvisible();
+            makeVisible();
+        }
+    
         this.lastOperation = true;
     }
     
@@ -168,7 +237,7 @@ public class SlotMachine {
      * 
      * @param color The color of the symbol to add to all wheels.
      */
-    public void addSymbolToAll(String color) {
+    private void addSymbolToAll(String color) {
         if (wheels.isEmpty()) {
             this.lastOperation = false;
             return;
@@ -295,9 +364,16 @@ public class SlotMachine {
      * @return The number of distinct symbols.
      */
     public int distinctSymbols() {
-        String[] uniqueSymbols = symbols();
+        String[] configuracionVisible = configuration(); 
+        ArrayList<String> unicos = new ArrayList<>();
+        for (int i = 0; i < configuracionVisible.length; i++) {
+            String colorActual = configuracionVisible[i];
+            if (colorActual != null && !unicos.contains(colorActual)) {
+                unicos.add(colorActual);
+            }
+        }
         this.lastOperation = true;
-        return uniqueSymbols.length;
+        return unicos.size();
     }
     
     /**
