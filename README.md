@@ -233,3 +233,84 @@ Pair programming, por el mismo punto de la pregunta 6 y mejorar nuestras habilid
 * ICPC Foundation. **49th ICPC World Championship — Problem I: Slot Machine.**
 * JUnit. (s. f.). Class Assert (JUnit API 4.12). JUnit.org. https://junit.org/junit4/javadoc/4.12/org/junit/Assert.html (Assert (assertArrayEquals))
 
+## Retrospectiva 3
+
+**1. ¿Cuáles fueron los mini-ciclos definidos? Justifíquenlos.**
+## Mini-ciclos planificados
+
+Para organizar el desarrollo del proyecto se establecieron cuatro mini-ciclos:
+
+### Mini-ciclo 1: Desarrollo Astah - Pruebas de unidad y pruebas colaborativas
+
+El primer mini-ciclo estuvo orientado a la construcción del desarrollo completo en Astah UML, las pruebas de unidad propias y la incorporación de pruebas compartidas con otros integrantes de la asignatura, para esto se hizo primero un análisis del problema de la maratón.
+
+En cuanto, al desarrollo completo en la herramienta astah se contemplo todo lo necesario para poder desarrollar este ciclo, como métodos, clases nuevas a incorporar, diagramas de secuencia, etc. 
+
+Para las pruebas propias se desarrollaron casos en la clase SlotMachineContestTest, verificando principalmente el comportamiento de la solución del problema de la maratón, la creación de máquinas y los movimientos utilizados por el algoritmo.
+
+Adicionalmente, se prepararon al menos dos casos de prueba compartidos en la clase SlotMachineContestCTest, con el propósito de comprobar el comportamiento de la solución desde una perspectiva diferente y facilitar la validación colaborativa del proyecto.
+
+Estas pruebas se realizaron teniendo en cuenta las restricciones establecidas para el uso de SlotMachine como herramienta de prueba del algoritmo, que luego empezaríamos a codificar, esto todo esto basado en la prática xp de Code the unit test first.
+
+### Mini-ciclo 2: Diseño e implementación de la solución
+
+Estuvo orientado al análisis del problema de la maratón y a la implementación de las funcionalidades principales requeridas para el tercer ciclo del proyecto.
+
+En este mini-ciclo se desarrollaron principalmente las funcionalidades necesarias para:
+
+* Crear una máquina con igual número de ruedas y símbolos.
+* Resolver el problema de la maratón mediante el método solve.
+* Utilizar la máquina tragamonedas como herramienta de prueba del algoritmo de solución.
+* Integrar las funcionalidades desarrolladas en los ciclos anteriores con la nueva solución.
+
+El método solve fue diseñado de manera que la clase SlotMachine se utilizara como herramienta para probar la solución, sin que la propia clase fuera la encargada de resolver el problema. De acuerdo con los requisitos de diseño, durante la ejecución de solve la máquina debe permanecer invisible.
+
+### Mini-ciclo 3: Desarrollo de la simulación
+
+El tercer mini-ciclo estuvo destinado a implementar el método simulate, cuyo propósito es permitir observar gráficamente la solución generada para el problema de la maratón.
+
+En este mini-ciclo se integró el algoritmo desarrollado en el mini-ciclo anterior con la interfaz gráfica de la máquina tragamonedas. Para esto, se estableció que la máquina debe permanecer visible durante la ejecución de simulate, permitiendo observar los movimientos realizados por las ruedas hasta alcanzar la solución.
+
+También se verificó la integración entre la creación de la máquina, los movimientos generados por el algoritmo y la representación gráfica de la simulación.
+
+### Mini-ciclo 4: Pruebas de aceptación y preparación de la presentación
+
+El cuarto mini-ciclo estuvo orientado a verificar el funcionamiento integral del sistema y preparar las pruebas de aceptación para la presentación final.
+
+En este mini-ciclo se diseñaron dos pruebas de aceptación enfocadas en comprobar el funcionamiento de solve y simulate. La primera busca verificar que el algoritmo genere una solución válida para el problema de la maratón, mientras que la segunda busca comprobar el flujo completo de simulación mediante la interfaz gráfica.
+
+Finalmente, se revisó el funcionamiento general del proyecto, la documentación, el diseño realizado en Astah y el cumplimiento de los requisitos establecidos para el ciclo.
+
+**2. ¿Cuál es el estado actual del proyecto en términos de mini-ciclos? ¿por qué?**
+Terminado, porque pudimos cumplir con los requisitos y lo estipulado en el documento del ciclo 3 de desarrollo.
+
+**3. ¿Cuál fue el tiempo total invertido por cada uno de ustedes? (Horas/Hombre)**
+* Cañon : 10 horas
+* Paez : 10 horas
+
+**4. ¿Cuál consideran fue el mayor logro? ¿Por qué?**
+Lo que consideramos como el mayor logro para este ciclo del proyecto, es la creación de un algoritmo que resolviera el problema cumpliendo con los párametros propuestos en la guía del ciclo de desarrrollo.
+
+**5. ¿Cuál consideran que fue el mayor problema técnico? ¿Qué hicieron para resolverlo?**
+El hecho de intentar ejecutar el que creíamos que era el algoritmo que solucionaba el problema, sin embargo, en muchos casos simplemente se quedaba infinitamente intentando girar las ruedas o concluía en un estado que no era un jackpot, siendo un poco frustante. Para resolver esto nos dimos cuenta que el método distinct symbols que teníamos no era adecuado, por lo que sin este no podíamos generar correctamente el algoritmo que resolviera el problema, al cambiarlo fue más fácil darnos cuenta de lo que nos faltaba.
+
+**6. ¿Qué hicieron bien como equipo? ¿Qué se comprometen a hacer para mejorar los resultados?**
+Poder desarrollar el trabajo a la par, así cada uno entendía que iba pasando. Nos comprometemos a seguir trabajando conjuntamente y mejorar cada vez con los plazos de las entregas.
+
+**7. Considerando las prácticas XP incluidas en los laboratorios. ¿cuál fue la más útil? ¿por qué?**
+Para este ciclo a diferencia de los demás la práctica más relevante fue, Code the unit test first, porque nos era más claro si ibamos bien en nuestro camino de desarrollo de los métodos a implementar, pero también porque no forzamos las pruebas como cuando se escribe el código primero, por lo que podemos decir que se tiene un código más limpio y coherente con los requerimientos.
+
+**8. ¿Qué referencias usaron? ¿Cuál fue la más útil? Incluyan citas con estándares adecuados.**
+* Oracle. (2014). *Java Platform, Standard Edition 8 API Specification*. https://docs.oracle.com/javase/8/docs/api/
+* Anthropic. (2026). Claude. https://www.anthropic.com/claude
+* Escuela Colombiana de Ingeniería Julio Garavito. **Desarrollo Orientado por Objetos — Proyecto Inicial Ciclo No. 1, 2026-2.**
+* ICPC Foundation. **49th ICPC World Championship — Problem I: Slot Machine.**
+
+Además pedimos ayuda a Claude para poder hacer un cambio en la clase de Canvas debido a la limitación en colores de la misma clase, y por la sugerencia de usar la líberia de java.awt.Color para esta labor, a continuación el prompt elegido para esto:
+
+**Prompt clase canvas:**
+Necesitamos modificar la clase Canvas de nuestro proyecto en Java para ampliar la cantidad de colores disponibles.
+Actualmente la clase Canvas utiliza java.awt.Color, pero el método setForegroundColor(String colorString) solamente reconoce siete colores mediante una cadena de if/else: red, black, blue, yellow, green, magenta y white.
+Nuestro proyecto necesita trabajar con 50 colores diferentes, por lo que queremos ampliar esta funcionalidad utilizando la clase java.awt.Color de la biblioteca estándar de Java. Manteniendo la estructura general de la clase Canvas, el uso de String para identificar los colores, permitir 50 colores diferentes.
+* Código actual
+Añadimos el código de canvas que teníamos originalmente.
