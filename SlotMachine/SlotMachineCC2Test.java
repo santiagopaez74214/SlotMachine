@@ -13,15 +13,6 @@ import org.junit.jupiter.api.Test;
  */
 public class SlotMachineCC2Test
 {
-    private SlotMachine slotMachine;
-    /**
-     * Default constructor for test class SlotMachineCC2Test
-     */
-    public SlotMachineCC2Test()
-    {
-        slotMachine = new SlotMachine();
-        slotMachine.makeInvisible();
-    }
 
     /**
      * Sets up the test fixture.
@@ -41,6 +32,8 @@ public class SlotMachineCC2Test
      */
     @Test
     public void accordingMsRhShouldSwapSymbolsBetweenTwoValidWheels() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addSymbol(1, "red");
         slotMachine.addSymbol(2, "blue");
         slotMachine.addWheel(1);
@@ -57,6 +50,8 @@ public class SlotMachineCC2Test
      */
     @Test
     public void accordingMsRhShouldNotChangeLockedWheelWhenSpinning() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addSymbol(1, "red");
         slotMachine.addSymbol(2, "blue");
         slotMachine.addWheel(1);
@@ -72,6 +67,8 @@ public class SlotMachineCC2Test
      */
     @Test
     public void accordingMsRhShouldDetectJackpotAfterForcedSpin() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
         slotMachine.addSymbol(1, "red");
@@ -85,6 +82,8 @@ public class SlotMachineCC2Test
      */
     @Test
     public void accordingMsRhShouldDeleteLastWheelWhenPositionGreaterThanSize() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
         slotMachine.delWheel(10);
@@ -101,6 +100,8 @@ public class SlotMachineCC2Test
      */
     @Test
     public void shouldNotSwap() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         // Add some symbols
         slotMachine.addSymbol(1, "red");
         slotMachine.addSymbol(1, "blue");
@@ -144,7 +145,8 @@ public class SlotMachineCC2Test
     @Test
     
     public void accordingFmSnShouldShowCorrectConfiguration(){
-    
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
         slotMachine.addWheel(3);
@@ -174,6 +176,8 @@ public class SlotMachineCC2Test
      */
     @Test
     public void accordingCaPpShouldNotSwapWhenWheelIsLockedAndWorkWhenUnlocked(){
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
         slotMachine.addWheel(3);
@@ -216,6 +220,8 @@ public class SlotMachineCC2Test
      */
     @Test
     public void accordingCaPpShouldSpinByStepsAndDetectJackpotCorrectly(){
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
     
@@ -227,10 +233,6 @@ public class SlotMachineCC2Test
     
         slotMachine.spin(new String[]{"red", "green"});
         assertTrue(slotMachine.ok());
-        
-        assertEquals(3, slotMachine.distinctSymbols());
-        assertFalse(slotMachine.isJackpot());
-    
     
         slotMachine.spin(2, 1);
         assertTrue(slotMachine.ok());

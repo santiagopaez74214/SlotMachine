@@ -20,7 +20,61 @@ public class Canvas{
     // shape objects in this project clean and simple for educational purposes.
 
     private static Canvas canvasSingleton;
-
+    private static final Map<String, Color> COLORES = new HashMap<String, Color>(); //Uso de IA para el manejo de colores
+ 
+    static {
+        COLORES.put("white",Color.white);
+        COLORES.put("lightgray",Color.lightGray);
+        COLORES.put("gray",Color.gray);
+        COLORES.put("darkgray",Color.darkGray);
+        COLORES.put("black",Color.black);
+        COLORES.put("red",Color.red);
+        COLORES.put("pink",Color.pink);
+        COLORES.put("orange",Color.orange);
+        COLORES.put("yellow",Color.yellow);
+        COLORES.put("green",Color.green);
+        COLORES.put("magenta",Color.magenta);
+        COLORES.put("cyan",Color.cyan);
+        COLORES.put("blue",Color.blue);
+        COLORES.put("brown",new Color(139,69,19));
+        COLORES.put("purple",new Color(128,0,128));
+        COLORES.put("violet",new Color(238,130,238));
+        COLORES.put("indigo",new Color(75,0,130));
+        COLORES.put("navy",new Color(0,0,128));
+        COLORES.put("skyblue",new Color(135,206,235));
+        COLORES.put("lightblue",new Color(173,216,230));
+        COLORES.put("royalblue",new Color(65,105,225));
+        COLORES.put("turquoise",new Color(64,224,208));
+        COLORES.put("teal",new Color(0,128,128));
+        COLORES.put("aquamarine",new Color(127,255,212));
+        COLORES.put("limegreen",new Color(50,205,50));
+        COLORES.put("darkgreen",new Color(0,100,0));
+        COLORES.put("forestgreen",new Color(34,139,34));
+        COLORES.put("olive",new Color(128,128,0));
+        COLORES.put("lightgreen",new Color(144,238,144));
+        COLORES.put("seagreen",new Color(46,139,87));
+        COLORES.put("gold",new Color(255,215,0));
+        COLORES.put("khaki",new Color(240,230,140));
+        COLORES.put("beige",new Color(245,245,220));
+        COLORES.put("ivory",new Color(255,255,240));
+        COLORES.put("tan",new Color(210,180,140));
+        COLORES.put("chocolate",new Color(210,105,30));
+        COLORES.put("sienna",new Color(160,82,45));
+        COLORES.put("maroon",new Color(128,0,0));
+        COLORES.put("crimson",new Color(220,20,60));
+        COLORES.put("darkred",new Color(139,0,0));
+        COLORES.put("salmon",new Color(250,128,114));
+        COLORES.put("coral",new Color(255,127,80));
+        COLORES.put("tomato",new Color(255,99,71));
+        COLORES.put("orangered",new Color(255,69,0));
+        COLORES.put("darkorange",new Color(255,140,0));
+        COLORES.put("peach",new Color(255,218,185));
+        COLORES.put("hotpink",new Color(255,105,180));
+        COLORES.put("deeppink",new Color(255,20,147));
+        COLORES.put("lavender",new Color(230,230,250));
+        COLORES.put("plum",new Color(221,160,221));
+    }
+    
     /**
      * Factory method to get the canvas singleton object.
      */
@@ -92,7 +146,7 @@ public class Canvas{
      // Note: this is a slightly backwards way of maintaining the shape
      // objects. It is carefully designed to keep the visible shape interfaces
      // in this project clean and simple for educational purposes.
-    public void draw(Object referenceObject, String color, Shape shape){
+    public void draw(Object referenceObject, String color,java.awt.Shape shape){
         objects.remove(referenceObject);   // just in case it was already there
         objects.add(referenceObject);      // add at the end
         shapes.put(referenceObject, new ShapeDescription(shape, color));
@@ -111,25 +165,14 @@ public class Canvas{
 
     /**
      * Set the foreground colour of the Canvas.
-     * @param  newColour   the new colour for the foreground of the Canvas 
+     * @param  colorString   nombre del color (ver mapa COLORES); si no existe, usa negro
      */
     public void setForegroundColor(String colorString){
-        if(colorString.equals("red"))
-            graphic.setColor(Color.red);
-        else if(colorString.equals("black"))
-            graphic.setColor(Color.black);
-        else if(colorString.equals("blue"))
-            graphic.setColor(Color.blue);
-        else if(colorString.equals("yellow"))
-            graphic.setColor(Color.yellow);
-        else if(colorString.equals("green"))
-            graphic.setColor(Color.green);
-        else if(colorString.equals("magenta"))
-            graphic.setColor(Color.magenta);
-        else if(colorString.equals("white"))
-            graphic.setColor(Color.white);
-        else
-            graphic.setColor(Color.black);
+        Color c = null;
+        if(colorString != null) {
+            c = COLORES.get(colorString.toLowerCase());
+        }
+        graphic.setColor(c != null ? c : Color.black);
     }
 
     /**
@@ -186,14 +229,14 @@ public class Canvas{
      * refresh the image drawn on it.
      */
     private class ShapeDescription{
-        private Shape shape;
+        private java.awt.Shape shape;
         private String colorString;
-
-        public ShapeDescription(Shape shape, String color){
+    
+        public ShapeDescription(java.awt.Shape shape, String color){
             this.shape = shape;
             colorString = color;
         }
-
+    
         public void draw(Graphics2D graphic){
             setForegroundColor(colorString);
             graphic.draw(shape);

@@ -15,15 +15,13 @@ import org.junit.jupiter.api.Test;
  */
 public class SlotMachineC2Test {
 
-    private SlotMachine slotMachine;
 
     /**
      * Crea una nueva máquina antes de cada prueba.
      */
     @BeforeEach
-    public void setUp() {
-        slotMachine = new SlotMachine();
-        slotMachine.makeInvisible();
+    public void setUp()
+    {
     }
     
     //addWheel(int)
@@ -33,6 +31,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldAddWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
 
         assertTrue(slotMachine.ok());
@@ -44,6 +44,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotCreateNegativePositionWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(-1);
 
         assertTrue(slotMachine.ok());
@@ -57,6 +59,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldDeleteExistingWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();        
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
 
@@ -71,6 +75,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotDeleteNonExistingWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
 
         slotMachine.delWheel(2);
@@ -86,6 +92,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldAddSymbolToWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
 
         slotMachine.addSymbol(1, "red");
@@ -99,6 +107,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotAddSymbolToNonExistingWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();    
         slotMachine.addSymbol(1, "red");
 
         assertFalse(slotMachine.ok());
@@ -112,6 +122,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldDeleteExistingSymbol() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addSymbol(1, "red");
 
@@ -126,6 +138,9 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotDeleteNonExistingSymbol() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();        
+
         slotMachine.addWheel(1);
         slotMachine.addSymbol(1, "red");
 
@@ -142,6 +157,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldPlaceExistingSymbol() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addSymbol(1, "red");
         slotMachine.addSymbol(1, "blue");
@@ -157,6 +174,9 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotPlaceNonExistingSymbol() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();        
+
         slotMachine.addWheel(1);
         slotMachine.addSymbol(1, "red");
 
@@ -173,6 +193,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldSpinExistingWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addSymbol(1, "red");
         slotMachine.addSymbol(1, "blue");
@@ -187,6 +209,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotSpinNonExistingWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addSymbol(1, "red");
 
@@ -202,6 +226,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldSpinAllWheels() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
 
@@ -223,6 +249,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotSpinWithoutWheels() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.spin();
 
         assertFalse(slotMachine.ok());
@@ -236,6 +264,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldReturnUniqueSymbols() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
 
@@ -255,6 +285,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotReturnSymbolsWhenMachineIsEmpty() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         String[] symbols = slotMachine.symbols();
 
         assertNotNull(symbols);
@@ -265,10 +297,12 @@ public class SlotMachineC2Test {
     // distinctSymbols()
 
     /**
-     * Verifica que se cuenten solamente los símbolos diferentes.
+     * Verifica que se cuenten solamente los símbolos diferentes visibles.
      */
     @Test
     public void shouldCountDistinctSymbols() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
 
@@ -278,7 +312,7 @@ public class SlotMachineC2Test {
         slotMachine.addSymbol(2, "red");
         slotMachine.addSymbol(2, "green");
 
-        assertEquals(3, slotMachine.distinctSymbols());
+        assertEquals(1, slotMachine.distinctSymbols());
         assertTrue(slotMachine.ok());
     }
 
@@ -288,6 +322,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotCountSymbolsWhenMachineIsEmpty() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         assertEquals(0, slotMachine.distinctSymbols());
         assertTrue(slotMachine.ok());
     }
@@ -300,6 +336,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldDetectJackpot() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
         slotMachine.addWheel(3);
@@ -322,6 +360,9 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotDetectJackpotWithDifferentSymbols() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();        
+
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
 
@@ -342,6 +383,9 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldReturnCurrentConfiguration() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
+
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
 
@@ -366,6 +410,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotReturnNonExistingWheels() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         String[] configuration = slotMachine.configuration();
 
         assertNotNull(configuration);
@@ -380,6 +426,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldMakeMachineVisible() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.makeVisible();
 
         assertTrue(slotMachine.ok());
@@ -393,6 +441,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotFailWhenMakingMachineVisibleAgain() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.makeVisible();
         slotMachine.makeVisible();
 
@@ -408,6 +458,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldMakeMachineInvisible() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.makeVisible();
         slotMachine.makeInvisible();
 
@@ -420,6 +472,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotFailWhenMakingMachineInvisibleAgain() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.makeInvisible();
         slotMachine.makeInvisible();
 
@@ -437,6 +491,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldExitMachine() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         assertTrue(true);
     }
 
@@ -448,6 +504,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotLeaveFailedOperationAfterExit() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         assertTrue(true);
     }
 
@@ -459,6 +517,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldReturnTrueWhenLastOperationSucceeded() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
 
         assertTrue(slotMachine.ok());
@@ -470,6 +530,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldReturnFalseWhenLastOperationFailed() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.delWheel(1);
 
         assertFalse(slotMachine.ok());
@@ -482,6 +544,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldSwapWheels() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
 
@@ -503,6 +567,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotSwapNonExistingWheels() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addSymbol(1, "red");
 
@@ -520,6 +586,9 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldLockWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();        
+
         slotMachine.addWheel(1);
 
         slotMachine.addSymbol(1, "red");
@@ -539,6 +608,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotLockNonExistingWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.lock(1);
 
         assertFalse(slotMachine.ok());
@@ -551,6 +622,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldUnlockWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
 
         slotMachine.addSymbol(1, "red");
@@ -571,6 +644,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotUnlockNonExistingWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.unlock(1);
 
         assertFalse(slotMachine.ok());
@@ -584,6 +659,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldSpinWheelBySteps() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
 
         slotMachine.addSymbol(1, "red");
@@ -604,6 +681,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotSpinLockedWheel() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
 
         slotMachine.addSymbol(1, "red");
@@ -625,6 +704,8 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldSetValidConfiguration() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
         slotMachine.addWheel(3);
@@ -652,6 +733,9 @@ public class SlotMachineC2Test {
      */
     @Test
     public void shouldNotSetConfigurationWithWrongSize() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
+        
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
 
@@ -665,5 +749,15 @@ public class SlotMachineC2Test {
         assertFalse(slotMachine.ok());
 
         assertArrayEquals(new String[]{"red", "blue"},slotMachine.configuration());
+    }
+    
+    /**
+     * Tears down the test fixture.
+     *
+     * Called after every test case method.
+     */
+    @AfterEach
+    public void tearDown()
+    {
     }
 }
