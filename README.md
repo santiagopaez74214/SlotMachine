@@ -346,17 +346,22 @@ Terminado, porque pudimos cumplir con todos los requisitos funcionales, de dise�
 * Cañon : 7 horas
 * Paez : 7 horas
 
+
 **4. ¿Cuál consideran fue el mayor logro? ¿Por qué?**
+
 Aplicar correctamente los conceptos de herencia y polimorfismo. Fue un gran logro ver cómo la máquina tragamonedas podía ejecutar comportamientos visuales totalmente distintos (como encoger un símbolo en el canvas, ocultarlo o girar en sentido contrario) utilizando exactamente el mismo método spin(), delegando la responsabilidad a cada objeto en lugar de llenar la clase principal de condicionales.
 
 
 **5. ¿Cuál consideran que fue el mayor problema técnico? ¿Qué hicieron para resolverlo?**
+
 Modelar correctamente los diagramas de secuencia en Astah UML para los métodos modificados. Nos costó entender cómo representar gráficamente la sobrecarga de métodos (el método antiguo llamando al nuevo) y cómo estructurar los bloques condicionales (alt/opt) sin anidarlos incorrectamente al validar los instanceof y los return tempranos. Para resolverlo, analizamos detenidamente el flujo de nuestro código paso a paso y nos apoyamos en herramientas de IA para clarificar la sintaxis de PlantUML/Astah aplicable a bloques secuenciales.
 
 **6. ¿Qué hicieron bien como equipo? ¿Qué se comprometen a hacer para mejorar los resultados?**
+
 Poder desarrollar el trabajo a la par, así cada uno entendía que iba pasando. Nos comprometemos a seguir trabajando conjuntamente y mejorar cada vez con los plazos de las entregas.
 
 **7. Considerando las prácticas XP incluidas en los laboratorios. ¿cuál fue la más útil? ¿por qué?**
+
 Refactoring. Esta práctica fue el núcleo del ciclo. Modificar nuestro código base para soportar nuevos tipos de ruedas y símbolos sin alterar ni romper las funcionalidades que ya habíamos consolidado en los tres ciclos anteriores nos demostró la importancia de mantener un código limpio y altamente cohesivo.
 
 **8. ¿Qué referencias usaron? ¿Cuál fue la más útil? Incluyan citas con estándares adecuados.**
