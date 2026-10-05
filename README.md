@@ -318,6 +318,8 @@ Añadimos el código de canvas que teníamos originalmente.
 
 ## Retrospectiva 4
 
+**1. ¿Cuáles fueron los mini-ciclos definidos? Justifíquenlos.**
+
 ## Mini-ciclos planificados
 
 Para organizar el desarrollo del proyecto se establecieron cuatro mini-ciclos:
@@ -340,9 +342,11 @@ Destinado a garantizar que la refactorización no rompiera el código anterior y
 Orientado a la entrega final. Se elaboraron los diagramas de secuencia en Astah para documentar cómo fluyen los mensajes internamente al invocar los nuevos métodos sobrecargados y las validaciones de tipo. Posteriormente, se redactaron las pruebas de aceptación enfocadas en demostrar visualmente en el canvas el polimorfismo (ej. el desgaste del símbolo efímero o el giro inverso de la rueda propuesta).
 
 **2. ¿Cuál es el estado actual del proyecto en términos de mini-ciclos? ¿por qué?**
+
 Terminado, porque pudimos cumplir con todos los requisitos funcionales, de diseño y usabilidad exigidos para el ciclo 4, garantizando el principio implícito de extensibilidad.
 
 **3. ¿Cuál fue el tiempo total invertido por cada uno de ustedes? (Horas/Hombre)**
+
 * Cañon : 7 horas
 * Paez : 7 horas
 
