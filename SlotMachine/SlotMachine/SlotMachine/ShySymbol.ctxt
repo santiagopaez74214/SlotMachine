@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=ShySymbol
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ ShySymbol\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=ShySymbol()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ ShySymbol\r\n
+comment2.params=color
+comment2.target=ShySymbol(java.lang.String)
+comment3.params=
+comment3.target=void\ selected()
+comment3.text=\r\n\ Alternates\ the\ visibility\ of\ the\ symbol\ every\ time\ it\ is\ selected.\r\n
+comment4.params=
+comment4.target=boolean\ isShyVisible()
+comment4.text=\r\n\ Returns\ the\ current\ shy\ state.\r\n\r\n\ @return\ true\ if\ the\ symbol\ should\ be\ visible.\r\n
+numComments=5
