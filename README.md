@@ -314,3 +314,55 @@ Actualmente la clase Canvas utiliza java.awt.Color, pero el método setForegroun
 Nuestro proyecto necesita trabajar con 50 colores diferentes, por lo que queremos ampliar esta funcionalidad utilizando la clase java.awt.Color de la biblioteca estándar de Java. Manteniendo la estructura general de la clase Canvas, el uso de String para identificar los colores, permitir 50 colores diferentes.
 * Código actual
 Añadimos el código de canvas que teníamos originalmente.
+
+
+## Retrospectiva 4
+
+## Mini-ciclos planificados
+
+Para organizar el desarrollo del proyecto se establecieron cuatro mini-ciclos:
+
+### Mini-ciclo 1: Diseño y estructuración de la nueva arquitectura (Astah)
+
+El primer mini-ciclo estuvo orientado a planificar la extensibilidad del proyecto mediante diagramas de clases. Se definió la jerarquía de herencia creando superclases para Wheel y Symbol, permitiendo derivar los nuevos comportamientos (NormalWheel, LeftyWheel, RebelWheel, y el elemento propuesto ReverseWheel; así como NormalSymbol, EphemeralSymbol y ShySymbol)
+
+
+### Mini-ciclo 2: Refactorización de código e implementación del polimorfismo
+
+Este mini-ciclo se centró en la programación de las nuevas clases y la modificación de SlotMachine. Se sobrecargaron los métodos addWheel y addSymbol para recibir el parámetro type. Se implementó la lógica interna (createWheel, createSymbol) mediante polimorfismo. Se añadieron las validaciones lógicas con instanceof para respetar las restricciones de la rueda rebelde (no dejarse eliminar, bloquear o intercambiar) y la actualización de las ruedas zurdas (updateLeftyWheels).
+
+### Mini-ciclo 3: Pruebas de unidad propias y colaborativas
+
+Destinado a garantizar que la refactorización no rompiera el código anterior y que los nuevos elementos funcionaran según lo esperado. Se construyó SlotMachineC4Test para verificar la creación de tipos y restricciones, y se aportaron casos a SlotMachineCC4Test evaluando el comportamiento de las ruedas y símbolos extendidos interactuando al mismo tiempo.
+
+### Mini-ciclo 4: Diagramas de secuencia y Pruebas de aceptación
+
+Orientado a la entrega final. Se elaboraron los diagramas de secuencia en Astah para documentar cómo fluyen los mensajes internamente al invocar los nuevos métodos sobrecargados y las validaciones de tipo. Posteriormente, se redactaron las pruebas de aceptación enfocadas en demostrar visualmente en el canvas el polimorfismo (ej. el desgaste del símbolo efímero o el giro inverso de la rueda propuesta).
+
+**2. ¿Cuál es el estado actual del proyecto en términos de mini-ciclos? ¿por qué?**
+Terminado, porque pudimos cumplir con todos los requisitos funcionales, de diseño y usabilidad exigidos para el ciclo 4, garantizando el principio implícito de extensibilidad.
+
+**3. ¿Cuál fue el tiempo total invertido por cada uno de ustedes? (Horas/Hombre)**
+* Cañon : 7 horas
+* Paez : 7 horas
+
+**4. ¿Cuál consideran fue el mayor logro? ¿Por qué?**
+Aplicar correctamente los conceptos de herencia y polimorfismo. Fue un gran logro ver cómo la máquina tragamonedas podía ejecutar comportamientos visuales totalmente distintos (como encoger un símbolo en el canvas, ocultarlo o girar en sentido contrario) utilizando exactamente el mismo método spin(), delegando la responsabilidad a cada objeto en lugar de llenar la clase principal de condicionales.
+
+
+**5. ¿Cuál consideran que fue el mayor problema técnico? ¿Qué hicieron para resolverlo?**
+Modelar correctamente los diagramas de secuencia en Astah UML para los métodos modificados. Nos costó entender cómo representar gráficamente la sobrecarga de métodos (el método antiguo llamando al nuevo) y cómo estructurar los bloques condicionales (alt/opt) sin anidarlos incorrectamente al validar los instanceof y los return tempranos. Para resolverlo, analizamos detenidamente el flujo de nuestro código paso a paso y nos apoyamos en herramientas de IA para clarificar la sintaxis de PlantUML/Astah aplicable a bloques secuenciales.
+
+**6. ¿Qué hicieron bien como equipo? ¿Qué se comprometen a hacer para mejorar los resultados?**
+Poder desarrollar el trabajo a la par, así cada uno entendía que iba pasando. Nos comprometemos a seguir trabajando conjuntamente y mejorar cada vez con los plazos de las entregas.
+
+**7. Considerando las prácticas XP incluidas en los laboratorios. ¿cuál fue la más útil? ¿por qué?**
+Refactoring. Esta práctica fue el núcleo del ciclo. Modificar nuestro código base para soportar nuevos tipos de ruedas y símbolos sin alterar ni romper las funcionalidades que ya habíamos consolidado en los tres ciclos anteriores nos demostró la importancia de mantener un código limpio y altamente cohesivo.
+
+**8. ¿Qué referencias usaron? ¿Cuál fue la más útil? Incluyan citas con estándares adecuados.**
+* Oracle. (2014). *Java Platform, Standard Edition 8 API Specification*. https://docs.oracle.com/javase/8/docs/api/
+* Anthropic. (2026). Claude. https://www.anthropic.com/claude
+* Escuela Colombiana de Ingeniería Julio Garavito. **Desarrollo Orientado por Objetos — Proyecto Inicial Ciclo No. 4, 2026-2.**
+* ICPC Foundation. **49th ICPC World Championship — Problem I: Slot Machine.**
+
+
