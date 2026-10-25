@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class EmpheralSymbol here.
  * 
@@ -14,8 +13,9 @@ public class EphemeralSymbol extends Symbol {
      */
     public EphemeralSymbol() {
         super();
-        this.height = 30;
+        this.height = 60;
         this.width = 40;
+        changeSize(width, height);
     }
 
     /**
@@ -25,15 +25,16 @@ public class EphemeralSymbol extends Symbol {
      */
     public EphemeralSymbol(String color) {
         super(color);
-        this.height = 30;
+        this.height = 60;
         this.width = 40;
+        changeSize(width, height);
     }
 
     /**
      * Decreases the size of the symbol when selected.
      */
     @Override
-    public void selected() {
+    public void action() {
         if (height > 2) {
             height = height - 1;
         }

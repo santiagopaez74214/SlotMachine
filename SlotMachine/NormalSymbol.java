@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class NormalSymbol here.
  * 
@@ -22,6 +21,6 @@ public class NormalSymbol extends Symbol{
      * A normal symbol does not change when selected.
      */
     @Override
-    public void selected() {
+    public void action() {
     }
 }

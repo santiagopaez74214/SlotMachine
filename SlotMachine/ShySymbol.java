@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class ShySymbol here.
  * 
@@ -14,11 +13,13 @@ public class ShySymbol extends Symbol{
      */
     public ShySymbol(){
         super();
+        this.symbolShape.changeSize(-30, 40);
         this.shyVisible = true;
     }
         
     public ShySymbol(String color){
         super(color);
+        this.symbolShape.changeSize(-30, 40);
         this.shyVisible = true;
     }
 
@@ -26,7 +27,7 @@ public class ShySymbol extends Symbol{
      * Alternates the visibility of the symbol every time it is selected.
      */
     @Override
-    public void selected() {
+    public void action() {
         if (shyVisible) {
             shyVisible = false;
             makeInvisible();

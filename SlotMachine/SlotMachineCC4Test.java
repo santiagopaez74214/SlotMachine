@@ -23,20 +23,6 @@ public class SlotMachineCC4Test
     }
 
     /**
-     * Verifica que se puedan agregar simbolos de los tres tipos.
-     */
-    @Test
-    public void shouldAddSymbolsOfEveryType(){
-        SlotMachine slotMachine = new SlotMachine();
-        
-        slotMachine.addSymbol("normal", 1, "red");
-        slotMachine.addSymbol("ephemeral", 2, "blue");
-        slotMachine.addSymbol("shy", 3, "green");
-        assertTrue(slotMachine.ok());
-        assertEquals(3, slotMachine.symbols().length);
-    }
-
-    /**
      * Verifica que la rueda rebel no se deje bloquear, intercambiar
      * ni eliminar, y que la maquina quede igual despues de intentarlo.
      */

@@ -27,4 +27,9 @@ public class ReverseWheel extends Wheel {
     public void spin(int times) {
         super.spin(-times);
     }
+    
+    @Override 
+    public void spin() {
+        spin(1);
+    }
 }

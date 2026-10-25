@@ -5,7 +5,7 @@
  * @author David Páez and Joseph
  * @version August 2026
  */
-public class Symbol {
+public abstract class Symbol {
     protected String color;
     protected Triangle symbolShape;
     protected int xPos;
@@ -85,6 +85,6 @@ public class Symbol {
         symbolShape.changeSize(height, width);
     }
 
-    protected void selected(){
-    }
+    protected abstract void action();
+    
 }
