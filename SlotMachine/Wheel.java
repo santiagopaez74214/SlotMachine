@@ -7,7 +7,7 @@
  */
 import java.util.*;
 
-public class Wheel {
+public abstract class Wheel {
     protected int pos;
     protected ArrayList<Symbol> symbols;
     protected boolean isVisible;
@@ -216,7 +216,7 @@ public class Wheel {
             }
         }
 
-        symbols.get(currentSymbol).selected();
+        symbols.get(currentSymbol).action();
 
         if (isVisible && !(symbols.get(currentSymbol) instanceof ShySymbol)) {
             symbols.get(currentSymbol).makeVisible();

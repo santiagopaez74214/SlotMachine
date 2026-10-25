@@ -1,5 +1,3 @@
-
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +5,10 @@ import org.junit.jupiter.api.Test;
 
 /**
  * The test class SlotMachineCC2Test.
+ * Collective tests for cycle 2: swap, lock/unlock, spin by steps and set configuration.
+ *
+ * Note: a symbol can only be added to a wheel that already exists, so in every
+ * test the wheels are created before their symbols.
  *
  * @author  (your name)
  * @version (a version number or a date)
@@ -25,25 +27,28 @@ public class SlotMachineCC2Test
     }
     
     //Grupo: MoralesS-RojasH
+    
     /**
      * Verifica que, al intercambiar dos ruedas válidas con símbolos
      * distintos mediante swap(int, int), cada una termine mostrando el
      * símbolo que antes tenía la otra.
      */
-        @Test
-        public void accordingMsRhShouldSwapSymbolsBetweenTwoValidWheels() {
-            SlotMachine slotMachine = new SlotMachine();
-            slotMachine.makeInvisible();
-            slotMachine.addSymbol(1, "red");
-            slotMachine.addSymbol(2, "blue");
-            slotMachine.addWheel(1);
-            slotMachine.addWheel(2);
-            slotMachine.placeSymbol(1, "red");
-            slotMachine.placeSymbol(2, "blue");
-            slotMachine.swap(1, 2);
-            assertEquals("blue", slotMachine.configuration()[0]);
-            assertEquals("red", slotMachine.configuration()[1]);
-        }
+    @Test
+    public void accordingMsRhShouldSwapSymbolsBetweenTwoValidWheels() {
+        SlotMachine slotMachine = new SlotMachine();
+        slotMachine.makeInvisible();
+        slotMachine.addWheel(1);
+        slotMachine.addWheel(2);
+        slotMachine.addSymbol(1, "red");
+        slotMachine.addSymbol(2, "blue");
+        slotMachine.placeSymbol(1, "red");
+        slotMachine.placeSymbol(2, "blue");
+        slotMachine.swap(1, 2);
+        assertTrue(slotMachine.ok());
+        assertEquals("blue", slotMachine.configuration()[0]);
+        assertEquals("red", slotMachine.configuration()[1]);
+    }
+    
     /**
      * Verifica que una rueda bloqueada con lock(int) no cambie su
      * símbolo visible al intentar girarla con spin(int).
@@ -52,14 +57,15 @@ public class SlotMachineCC2Test
     public void accordingMsRhShouldNotChangeLockedWheelWhenSpinning() {
         SlotMachine slotMachine = new SlotMachine();
         slotMachine.makeInvisible();
-        slotMachine.addSymbol(1, "red");
-        slotMachine.addSymbol(2, "blue");
         slotMachine.addWheel(1);
+        slotMachine.addSymbol(1, "red");
+        slotMachine.addSymbol(1, "blue");
         slotMachine.placeSymbol(1, "red");
         slotMachine.lock(1);
         slotMachine.spin(1);
         assertEquals("red", slotMachine.configuration()[0]);
     }
+    
     /**
      * Verifica colectivamente que, al forzar una configuración donde todas las ruedas
      * quedan con el mismo símbolo mediante spin(String[]), el sistema cambie su
@@ -72,22 +78,28 @@ public class SlotMachineCC2Test
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
         slotMachine.addSymbol(1, "red");
+        slotMachine.addSymbol(1, "blue");
         slotMachine.addSymbol(2, "blue");
+        slotMachine.addSymbol(2, "red");
+        assertFalse(slotMachine.isJackpot());
         slotMachine.spin(new String[]{"red", "red"});
+        assertTrue(slotMachine.ok());
         assertTrue(slotMachine.isJackpot());
     }
+    
     /**
-     * Verifica que delWheel(int pos) elimine la última rueda
-     * cuando la posición indicada es mayor que el número de ruedas.
+     * Verifica que delWheel(int pos) no elimine ninguna rueda cuando la
+     * posición indicada es mayor que el número de ruedas, y que ok() sea false.
      */
     @Test
-    public void accordingMsRhShouldDeleteLastWheelWhenPositionGreaterThanSize() {
+    public void accordingMsRhShouldNotDeleteWheelWhenPositionGreaterThanSize() {
         SlotMachine slotMachine = new SlotMachine();
         slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
         slotMachine.delWheel(10);
-        assertEquals(1, slotMachine.configuration().length);
+        assertFalse(slotMachine.ok());
+        assertEquals(2, slotMachine.configuration().length);
     }
     
     //Grupo: Ibarra y Poveda
@@ -102,14 +114,15 @@ public class SlotMachineCC2Test
     public void shouldNotSwap() {
         SlotMachine slotMachine = new SlotMachine();
         slotMachine.makeInvisible();
-        // Add some symbols
-        slotMachine.addSymbol(1, "red");
-        slotMachine.addSymbol(1, "blue");
-       
+        
         // Add some wheels
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
         slotMachine.addWheel(3);
+        
+        // Add some symbols
+        slotMachine.addSymbol(1, "red");
+        slotMachine.addSymbol(1, "blue");
        
         // Lock the first one
         slotMachine.lock(1);
@@ -122,18 +135,20 @@ public class SlotMachineCC2Test
     }    
      
     //G01 : BarraganA-GuerreroB
-    /** Prueba que una rueda existente pueda ser bloqueada correctamente.
-        * La maquina debe permitir bloquear una rueda que existe.
-        * La operacion debe realizarse correctamente y ok() debe retornar true.
-    */
-            
-        @Test
-        public void accordingBaGqShouldLockWheel() {
-            SlotMachine maquinaTraga = new SlotMachine();
-            maquinaTraga.addWheel(1);
-            maquinaTraga.lock(1);
-            assertTrue(maquinaTraga.ok());
-        }
+    
+    /** 
+     * Prueba que una rueda existente pueda ser bloqueada correctamente.
+     * La maquina debe permitir bloquear una rueda que existe.
+     * La operacion debe realizarse correctamente y ok() debe retornar true.
+     */
+    @Test
+    public void accordingBaGqShouldLockWheel() {
+        SlotMachine maquinaTraga = new SlotMachine();
+        maquinaTraga.makeInvisible();
+        maquinaTraga.addWheel(1);
+        maquinaTraga.lock(1);
+        assertTrue(maquinaTraga.ok());
+    }
 
     //Grupo-02 ForeroJ-SalinasS
     
@@ -143,29 +158,31 @@ public class SlotMachineCC2Test
      * Tests that configuration() reports each wheel's current color
      */
     @Test
-    
-    public void accordingFmSnShouldShowCorrectConfiguration(){
+    public void accordingFmSnShouldShowCorrectConfiguration() {
         SlotMachine slotMachine = new SlotMachine();
         slotMachine.makeInvisible();
         slotMachine.addWheel(1);
         slotMachine.addWheel(2);
         slotMachine.addWheel(3);
-        slotMachine.addSymbol(1, "black");
-        slotMachine.addSymbol(1, "red");  // Add a new symbol [black,red] - With black being the default. 
-        slotMachine.addSymbol(1, "green"); // Add another symbol [black,green,red].
-        slotMachine.placeSymbol(1, "red"); // Change the first wheel's symbol to red.
+        
+        // Every wheel gets the same three symbols [black, red, green], black being the default.
+        for (int wheel = 1; wheel <= 3; wheel++) {
+            slotMachine.addSymbol(wheel, "black");
+            slotMachine.addSymbol(wheel, "red");
+            slotMachine.addSymbol(wheel, "green");
+        }
+        
+        slotMachine.placeSymbol(1, "red");   // Change the first wheel's symbol to red.
         slotMachine.placeSymbol(2, "green"); // Change the second wheel's symbol to green.
         slotMachine.placeSymbol(3, "black"); // Change the third wheel's symbol to black.
-    
         
-        String[] config = slotMachine.configuration(); // Create config with the machine's current configuration.
+        String[] config = slotMachine.configuration();
         
-        assertEquals("red", config[0]); // Verify that positions match.
-        assertEquals("green", config[1]); //
-        assertEquals("black", config[2]); //
+        assertEquals("red", config[0]);
+        assertEquals("green", config[1]);
+        assertEquals("black", config[2]);
     }
 
-    
     //G06: CañonA - PaezP
     
     //Prueba #1
@@ -175,7 +192,7 @@ public class SlotMachineCC2Test
      * y la rotación de una rueda por pasos.
      */
     @Test
-    public void accordingCaPpShouldNotSwapWhenWheelIsLockedAndWorkWhenUnlocked(){
+    public void accordingCaPpShouldNotSwapWhenWheelIsLockedAndWorkWhenUnlocked() {
         SlotMachine slotMachine = new SlotMachine();
         slotMachine.makeInvisible();
         slotMachine.addWheel(1);
@@ -209,7 +226,6 @@ public class SlotMachineCC2Test
     
         slotMachine.spin(3, 1);
         assertTrue(slotMachine.ok());
-        assertNotNull(slotMachine.configuration());
         assertEquals(3, slotMachine.configuration().length);
     }
     
@@ -219,7 +235,7 @@ public class SlotMachineCC2Test
      * Verifica la rotación por pasos y la detección de un jackpot.
      */
     @Test
-    public void accordingCaPpShouldSpinByStepsAndDetectJackpotCorrectly(){
+    public void accordingCaPpShouldSpinByStepsAndDetectJackpotCorrectly() {
         SlotMachine slotMachine = new SlotMachine();
         slotMachine.makeInvisible();
         slotMachine.addWheel(1);
@@ -247,15 +263,16 @@ public class SlotMachineCC2Test
     //G07: GarcíaJ-QuezadaK
     
     /**
-     * spin(wheel, 0) no debería mover la rueda — girar cero pasos es una
+     * spin(wheel, 0) no debería mover la rueda: girar cero pasos es una
      * operación válida que no cambia nada, no un error.
      */
     @Test
     public void accordingGjQkShouldSucceedWithoutChangingConfigurationWhenSpinningZeroSteps() {
         SlotMachine m = new SlotMachine();
+        m.makeInvisible();
         m.addWheel(1);
         m.addSymbol(1, "red");
-        m.addSymbol(2, "blue");
+        m.addSymbol(1, "blue");
         String before = m.configuration()[0];
         m.spin(1, 0);
         assertTrue(m.ok());
@@ -263,12 +280,13 @@ public class SlotMachineCC2Test
     }
     
     /**
-     * Fijar una rueda que ya estaba fija no debería fallar — lock() es
-     * idempotente, no un error repetir la operación.
+     * Fijar una rueda que ya estaba fija no debería fallar: lock() es
+     * idempotente, no es un error repetir la operación.
      */
     @Test
     public void accordingGjQkShouldSucceedWhenLockingAnAlreadyLockedWheel() {
         SlotMachine m = new SlotMachine();
+        m.makeInvisible();
         m.addWheel(1);
         m.lock(1);
         m.lock(1);
@@ -278,66 +296,78 @@ public class SlotMachineCC2Test
     //G02: GarzonR- MendivelsoS:
     
     /**
-     * If a symbol doesn't exists, wheels should change their symbols except 
-     * that one with the strange symbol.
+     * If a symbol doesn't exist, the wheels should change their symbols
+     * except the one with the strange symbol.
      */
     @Test
-    public void accordingGrMsShouldNotSetSymbolsThatDoesNotExists(){
+    public void accordingGrMsShouldNotSetSymbolsThatDoesNotExists() {
         SlotMachine slotMachine = new SlotMachine();
-        slotMachine.addSymbol(1,"red");
-        slotMachine.addSymbol(2,"blue");
-        slotMachine.addSymbol(3,"green");
-        while(slotMachine.configuration().length < 3){
-             slotMachine.addWheel(1);   
-        }
-    
+        slotMachine.makeInvisible();
+        slotMachine.addWheel(1);
+        slotMachine.addWheel(2);
+        slotMachine.addWheel(3);
         
-        String[] begin = {"red", "blue", "green"};
-        slotMachine.spin(begin);
+        slotMachine.addSymbol(1, "red");
+        slotMachine.addSymbol(1, "blue");
+        slotMachine.addSymbol(2, "blue");
+        slotMachine.addSymbol(2, "green");
+        slotMachine.addSymbol(3, "green");
+        slotMachine.addSymbol(3, "blue");
         
-        String[] strangeSymbols = {"red", "null", "blue"};
-        slotMachine.spin(strangeSymbols);
+        slotMachine.spin(new String[]{"red", "blue", "green"});
+        assertTrue(slotMachine.ok());
+        
+        slotMachine.spin(new String[]{"red", "null", "blue"});
+        assertFalse(slotMachine.ok());
         
         String[] waited = {"red", "blue", "blue"};
-        String[] afterSpin = slotMachine.configuration();
-        
-        assertEquals(waited, afterSpin);
+        assertArrayEquals(waited, slotMachine.configuration());
     }
+    
     /**
-     * If a symbol doesn't exists it shouldn't be added and 
+     * If a symbol doesn't exist it shouldn't be added and 
      * you shouldn't win if you try to set the machine with that symbol.
      */
     @Test
-    public void accordingGrMsShouldNotAddStrangeSymbolsAndWinWithThatSymbol(){
+    public void accordingGrMsShouldNotAddStrangeSymbolsAndWinWithThatSymbol() {
         SlotMachine slotMachine = new SlotMachine();
-        slotMachine.addSymbol(1,"red");
-        slotMachine.addSymbol(2,"blue");
-        slotMachine.addSymbol(3,"green");
-        while(slotMachine.configuration().length < 3){
-             slotMachine.addWheel(1);   
-        }
-    
+        slotMachine.makeInvisible();
+        slotMachine.addWheel(1);
+        slotMachine.addWheel(2);
+        slotMachine.addWheel(3);
+        
+        slotMachine.addSymbol(1, "red");
+        slotMachine.addSymbol(1, "blue");
+        slotMachine.addSymbol(2, "blue");
+        slotMachine.addSymbol(2, "red");
+        slotMachine.addSymbol(3, "green");
+        slotMachine.addSymbol(3, "red");
+        
+        // There is no fourth wheel, so the symbol can't be added.
         slotMachine.addSymbol(4, "strange");
+        assertFalse(slotMachine.ok());
+        assertEquals(3, slotMachine.symbols().length);
         
-        String[] strangeCombination = {"strange", "strange", "strange"};
-        
+        slotMachine.spin(new String[]{"strange", "strange", "strange"});
+        assertFalse(slotMachine.ok());
         assertFalse(slotMachine.isJackpot());
     }
     
     //G02: Carvajal- Largo:
     
     /**
-     * Verifies that spinning a wheel advances it to the next symbol
-     * in the machine's symbol list.
+     * Verifies that spinning a wheel one step advances it to the next symbol
+     * in the wheel's symbol list.
      */
     @Test
     public void accordingCxLxShouldAdvanceToNextSymbol() {
         SlotMachine machine = new SlotMachine();
-        machine.addSymbol(1, "red");
-        machine.addSymbol(2, "blue");
+        machine.makeInvisible();
         machine.addWheel(1);
+        machine.addSymbol(1, "red");
+        machine.addSymbol(1, "blue");
         machine.placeSymbol(1, "red");
-        machine.spin(1);
+        machine.spin(1, 1);
         assertEquals("blue", machine.configuration()[0]);  
         assertTrue(machine.ok());
     }
@@ -349,6 +379,8 @@ public class SlotMachineCC2Test
     @Test
     public void accordingCxLxShouldNotDeleteMissingSymbol() {
         SlotMachine machine = new SlotMachine();
+        machine.makeInvisible();
+        machine.addWheel(1);
         machine.addSymbol(1, "red");
         machine.delSymbol("blue");
         assertFalse(machine.ok());                          
@@ -364,6 +396,7 @@ public class SlotMachineCC2Test
     @Test
     public void accordingMrSeShouldKeepLockedWheelFixedAndAllowSpinAfterUnlock() {
         SlotMachine machine = new SlotMachine();
+        machine.makeInvisible();
         machine.addWheel(1);
         machine.addSymbol(1, "red");
         machine.addSymbol(1, "blue");
@@ -379,25 +412,26 @@ public class SlotMachineCC2Test
         machine.spin(1, 1); // ahora sí debe poder girar
     
         assertTrue(machine.ok());
+        assertEquals("blue", machine.configuration()[0]);
     }
     
     /**
-     * No debería: aplicar ningún cambio si uno de los colores pedidos
-     * no existe en su rueda correspondiente
+     * No debería: tener éxito si uno de los colores pedidos no existe en su
+     * rueda correspondiente, y esa rueda debe conservar su símbolo.
      */
     @Test
     public void accordingMrSeShouldRejectSpinSetSymbolsWhenColorMissing() {
         SlotMachine machine = new SlotMachine();
+        machine.makeInvisible();
         machine.addWheel(1);
         machine.addWheel(2);
         machine.addSymbol(1, "red");
         machine.addSymbol(2, "green");
     
-        String[] before = machine.configuration();
         machine.spin(new String[]{"red", "purple"}); // "purple" no existe
     
         assertFalse(machine.ok());
-        assertArrayEquals(before, machine.configuration()); // nada se movió
+        assertEquals("green", machine.configuration()[1]); // la rueda 2 no cambió
     }
     
     /**
